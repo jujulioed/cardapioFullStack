@@ -13,6 +13,7 @@ import lombok.*;
 @Entity(name = "foods")
 public class Food {
 
+    // Estratégia de ID utilizada apenas para estudo, não usar em produção!
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
