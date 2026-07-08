@@ -1,12 +1,11 @@
 package com.jujulioed.cardapio.controller;
 
+import com.jujulioed.cardapio.dtos.FoodRequestDTO;
 import com.jujulioed.cardapio.dtos.FoodResponseDTO;
 import com.jujulioed.cardapio.entity.Food;
 import com.jujulioed.cardapio.repository.FoodRespository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +15,12 @@ public class FoodController {
 
     @Autowired
     private FoodRespository respository;
+
+    @PostMapping
+    public void saveFood(@RequestBody FoodRequestDTO data) {
+        Food foodData = new Food(data);
+        respository.save(foodData);
+    }
 
     @GetMapping
     public List<FoodResponseDTO> getAll() {
