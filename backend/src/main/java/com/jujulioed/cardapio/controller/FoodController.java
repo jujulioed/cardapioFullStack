@@ -1,5 +1,6 @@
 package com.jujulioed.cardapio.controller;
 
+import com.jujulioed.cardapio.dtos.FoodResponseDTO;
 import com.jujulioed.cardapio.entity.Food;
 import com.jujulioed.cardapio.repository.FoodRespository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class FoodController {
     private FoodRespository respository;
 
     @GetMapping
-    public List<Food> getAll() {
-        List<Food> foodList = respository.findAll();
+    public List<FoodResponseDTO> getAll() {
+        List<FoodResponseDTO> foodList = respository.findAll().stream().map(FoodResponseDTO::new).toList();
         return foodList;
     }
 }
